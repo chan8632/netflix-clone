@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { api } from "../utils/api";
 
-const fetchMovieData = async() => {
+const fetchPopularMovies = async () => {
   return await api.get("movie/popular");
 };
-export const usePostMovie = () =>
+export const usePopularMoviesQuery = () =>
   useQuery({
     queryKey: ["popularMovies"],
-      queryFn: fetchMovieData,
-      select: (result) => result.data,
+    queryFn: fetchPopularMovies,
+    select: (result) => result.data,
   });
