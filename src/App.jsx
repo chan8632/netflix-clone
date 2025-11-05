@@ -6,7 +6,7 @@ import MovieDetailPage from "./page/MovieDetail/MovieDetailPage";
 import NotFoundPage from "./page/NotFoundPage/NotFoundPage";
 
 function App() {
-  // 홈페이지  (/)
+  // 홈페이지  (/) -> 배너
   // 전체영화 목록 (서치) (/movies)
   // 영화 상세페이지 (/movies/:id)
 
