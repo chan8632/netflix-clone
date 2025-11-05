@@ -1,5 +1,4 @@
-import { Outlet, Route, Routes } from "react-router-dom";
-import "./App.css";
+import { Route, Routes } from "react-router-dom";
 import AppLayout from "./layout/AppLayout";
 import HomePage from "./page/Home/HomePage";
 import MoviesPage from "./page/Movies/MoviesPage";
@@ -10,7 +9,7 @@ function App() {
   // 홈페이지  (/)
   // 전체영화 목록 (서치) (/movies)
   // 영화 상세페이지 (/movies/:id)
-  
+
   return (
     <Routes>
       <Route path="/" element={<AppLayout />}>
