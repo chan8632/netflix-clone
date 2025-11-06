@@ -1,9 +1,9 @@
-.banner-area {
+.banner {
   height: 56vh;
   background-repeat: no-repeat;
   background-size: cover;
 }
-.banner-area:before {
+.banner:before {
   content: "";
   background: linear-gradient(to top, black, transparent);
   position: absolute;
@@ -12,9 +12,16 @@
   width: 100%;
 }
 
-.banner-text {
-  width: 40vw;
+.banner-text-area {
+  width: 33vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
   padding: 2rem;
-  position: absolute;
   font-family: sans-serif;
+}
+
+.banner-text-area * {
+  z-index: 2;
 }

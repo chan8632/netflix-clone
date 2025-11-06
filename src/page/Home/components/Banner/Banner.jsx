@@ -13,13 +13,13 @@ const Banner = () => {
   return (
     <div
       style={{
-        backgroundImage: `url(https://media.themoviedb.org/t/p/w533_and_h300_bestv2/${data.results[0].backdrop_path})`,
+        backgroundImage: `url(https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${data?.results[0].backdrop_path})`,
       }}
-      className="banner-area"
+      className="banner"
     >
-      <div className="banner-text">
-        <h1 className="text-white">{data.results[0].title}</h1>
-        <p className="text-white">{data.results[0].overview}</p>
+      <div className="banner-text-area text-white">
+        <h1>{data?.results[0].title}</h1>
+        <p>{data?.results[0].overview}</p>
       </div>
     </div>
   );
