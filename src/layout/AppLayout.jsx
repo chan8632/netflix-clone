@@ -9,12 +9,7 @@ import NetflixLogo from "../assets/netflix.png";
 const AppLayout = () => {
   return (
     <div>
-      <Navbar
-        bg="dark"
-        data-bs-theme="dark"
-        expand="lg"
-        className="bg-body-tertOiary"
-      >
+      <Navbar data-bs-theme="dark" expand="lg" className="bg-body-tertOiary">
         <Container fluid>
           <Navbar.Brand href="#">
             <img src={NetflixLogo} style={{ height: "30px", width: "auto" }} />

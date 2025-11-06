@@ -1,0 +1,20 @@
+.banner-area {
+  height: 56vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.banner-area:before {
+  content: "";
+  background: linear-gradient(to top, black, transparent);
+  position: absolute;
+  left: 0;
+  height: 56%;
+  width: 100%;
+}
+
+.banner-text {
+  width: 40vw;
+  padding: 2rem;
+  position: absolute;
+  font-family: sans-serif;
+}
