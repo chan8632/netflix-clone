@@ -14,6 +14,7 @@
   transition: all 1s;
   overflow-wrap: break-word;
   padding: 0.8rem;
+  backface-visibility: hidden;
 }
 .badge-list {
   display: flex;
