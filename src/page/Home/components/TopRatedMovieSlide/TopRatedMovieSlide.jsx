@@ -37,7 +37,7 @@ const TopRatedMovieSlide = () => {
           <MovieCard movie={movie} />
         ))}
       </Carousel>
-    </div>
+  </div>
   );
 };
 
