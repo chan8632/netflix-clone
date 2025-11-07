@@ -1,0 +1,17 @@
+.movie-card {
+  height: 330px;
+  cursor: pointer;
+}
+.movie-card:hover {
+  transform: scale(1.4);
+}
+.overlay {
+  opacity: 0;
+  background: #2b2929e6;
+  height: 100%;
+  transition: 0.5s;
+}
+
+.overlay:hover {
+  opacity: 1;
+}
