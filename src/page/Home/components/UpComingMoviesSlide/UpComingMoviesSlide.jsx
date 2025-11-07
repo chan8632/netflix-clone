@@ -1,13 +1,12 @@
 import React from "react";
+import { useUpComingMoviesQuery } from "../../../../hooks/useUpComingMovies";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { useTopRatedMovie } from "../../../../hooks/useTopRatedMovie";
-import { Alert } from "react-bootstrap";
-import MovieCard from "./../MovieCard/MovieCard";
-const TopRatedMovieSlide = () => {
-  const { isLoading, data, isError, error } = useTopRatedMovie();
-  if (isLoading) return <div>isLoading</div>;
-  if (isError) return <Alert variant={"danger"}>{error.message}</Alert>;
+import MovieCard from "../MovieCard/MovieCard";
+const UpComingMoviesSlide = () => {
+  const { isLoading, data, isError, error } = useUpComingMoviesQuery();
+  if (isLoading) return <div>...loading</div>;
+  if (isError) return <div>{error.message}</div>;
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -24,13 +23,11 @@ const TopRatedMovieSlide = () => {
   };
   return (
     <div>
-      <h3>Top rated Movies</h3>
+      <h3>Upcoming Movies</h3>
       <Carousel
         responsive={responsive}
-        centerMode={true}
         infinite={true}
         containerClass="carousel-container"
-        dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
       >
         {data.results.map((movie) => (
@@ -41,4 +38,4 @@ const TopRatedMovieSlide = () => {
   );
 };
 
-export default TopRatedMovieSlide;
+export default UpComingMoviesSlide;

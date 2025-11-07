@@ -5,6 +5,7 @@
 import Banner from "./components/Banner/Banner";
 import PopularMovieSlide from "./components/PopularMovieSlide/PopularMovieSlide";
 import TopRatedMovieSlide from "./components/TopRatedMovieSlide/TopRatedMovieSlide";
+import UpComingMoviesSlide from "./components/UpComingMoviesSlide/UpComingMoviesSlide";
 // 최신 영화
 const HomePage = () => {
   return (
@@ -12,6 +13,7 @@ const HomePage = () => {
       <Banner />
       <PopularMovieSlide />
       <TopRatedMovieSlide />
+      <UpComingMoviesSlide />
     </div>
   );
 };
