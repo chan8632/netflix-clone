@@ -1,5 +1,5 @@
 .movie-card {
-  min-width: 220px;
+  width: 220px;
   height: 330px;
   cursor: pointer;
   background-size: cover;

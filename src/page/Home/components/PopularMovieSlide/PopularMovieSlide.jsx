@@ -24,7 +24,6 @@ const PopularMovieSlide = () => {
       items: 1,
     },
   };
-  console.log(data.results);
   return (
     <div>
       <h3>Popuplar Movies</h3>

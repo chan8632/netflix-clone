@@ -9,7 +9,6 @@ const Banner = () => {
   if (isError) {
     return <div>{error.message}</div>;
   }
-  console.log(data);
   return (
     <div
       style={{

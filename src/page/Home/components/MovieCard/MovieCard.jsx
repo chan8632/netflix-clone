@@ -18,7 +18,6 @@ const MovieCard = ({ movie }) => {
     5: fiveStar,
   };
 
-  console.log("mmm", movie);
   const allIconUrl =
     "https://i.namu.wiki/i/oue1NCn0ejKPZgHqsUYAer_tvO-7Jarrq_6uqUT4Gkm9H3P0ADs9F-4-TU4R_RXPHXc06RcD9FrWlAlcQYH7fQ.svg";
   const adultIconUrl =
@@ -33,8 +32,10 @@ const MovieCard = ({ movie }) => {
       <div className="overlay">
         <h4>{movie?.title}</h4>
         <div className="badge-list">
-          {movie?.genre_ids.map((id) => (
-            <Badge bg="danger">{id}</Badge>
+          {movie?.genre_ids.map((id, index) => (
+            <Badge key={index} bg="danger">
+              {id}
+            </Badge>
           ))}
         </div>
 
