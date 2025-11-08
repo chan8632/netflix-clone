@@ -7,6 +7,7 @@ const UpComingMoviesSlide = () => {
   const { isLoading, data, isError, error } = useUpComingMoviesQuery();
   if (isLoading) return <div>...loading</div>;
   if (isError) return <div>{error.message}</div>;
+  console.log(data);
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -26,6 +27,7 @@ const UpComingMoviesSlide = () => {
       <h3>Upcoming Movies</h3>
       <Carousel
         responsive={responsive}
+        centerMode={true}
         infinite={true}
         containerClass="carousel-container"
         itemClass="carousel-item-padding-40-px"
