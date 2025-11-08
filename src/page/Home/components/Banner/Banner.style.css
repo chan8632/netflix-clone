@@ -14,12 +14,18 @@
 
 .banner-text-area {
   width: 33vw;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100%;
+  min-height: 100%;
   padding: 2rem;
   font-family: sans-serif;
+}
+@media (max-width: 1100px) {
+  .banner-text-area {
+    width: 100vw;
+  }
 }
 
 .banner-text-area * {
