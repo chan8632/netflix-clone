@@ -30,14 +30,13 @@ const TopRatedMovieSlide = () => {
         centerMode={true}
         infinite={true}
         containerClass="carousel-container"
-        dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
       >
         {data.results.map((movie) => (
           <MovieCard movie={movie} />
         ))}
       </Carousel>
-  </div>
+    </div>
   );
 };
 
