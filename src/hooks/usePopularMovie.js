@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { api } from "../utils/api";
 
 const fetchPopularMovies = async () => {
-  return await axios.get("/.netlify/functions/getPopularMovies");
+  return await api.get("movie/popular");
 };
 export const usePopularMoviesQuery = () =>
   useQuery({
