@@ -1,12 +1,12 @@
 import React from "react";
 import { Badge } from "react-bootstrap";
 import "./MovieCard.style.css";
-import zeroStar from "../../../../assets/zerostar.png";
-import oneStar from "../../../../assets/onestar.png";
-import twoStar from "../../../../assets/twostar.png";
-import threeStar from "../../../../assets/threestar.png";
-import fourStar from "../../../../assets/fourstar.png";
-import fiveStar from "../../../../assets/fivestar.png";
+import zeroStar from "../../assets/zerostar.png";
+import oneStar from "../../assets/onestar.png";
+import twoStar from "../../assets/twostar.png";
+import threeStar from "../../assets/threestar.png";
+import fourStar from "../../assets/fourstar.png";
+import fiveStar from "../../assets/fivestar.png";
 
 const MovieCard = ({ movie }) => {
   const starParsing = {
