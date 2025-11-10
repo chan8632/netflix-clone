@@ -25,7 +25,6 @@ const MovieCard = ({ movie }) => {
   }, {});
   if (isLoading) return <div>장르 데이터 로딩</div>;
   if (isError) return <div>장르 데이터 오류 : {error.message}</div>;
-  console.log("lll", genreList);
   const allIconUrl =
     "https://i.namu.wiki/i/oue1NCn0ejKPZgHqsUYAer_tvO-7Jarrq_6uqUT4Gkm9H3P0ADs9F-4-TU4R_RXPHXc06RcD9FrWlAlcQYH7fQ.svg";
   const adultIconUrl =
