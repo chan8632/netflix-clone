@@ -7,7 +7,7 @@ import twoStar from "../../assets/twostar.png";
 import threeStar from "../../assets/threestar.png";
 import fourStar from "../../assets/fourstar.png";
 import fiveStar from "../../assets/fivestar.png";
-import { useGenresList } from "../../hooks/useGenresList";
+import { useMovieGenres } from "../../hooks/useMovieGenres";
 
 const MovieCard = ({ movie }) => {
   const starParsing = {
@@ -18,9 +18,14 @@ const MovieCard = ({ movie }) => {
     4: fourStar,
     5: fiveStar,
   };
-  const { data: genreData } = useGenresList();
-  
-
+  const { data: genreData, isLoading, isError, error } = useMovieGenres();
+  const genreList = genreData?.reduce((obj, genresInfo) => {
+    obj[genresInfo.id] = genresInfo.name;
+    return obj;
+  }, {});
+  if (isLoading) return <div>장르 데이터 로딩</div>;
+  if (isError) return <div>장르 데이터 오류 : {error.message}</div>;
+  console.log("lll", genreList);
   const allIconUrl =
     "https://i.namu.wiki/i/oue1NCn0ejKPZgHqsUYAer_tvO-7Jarrq_6uqUT4Gkm9H3P0ADs9F-4-TU4R_RXPHXc06RcD9FrWlAlcQYH7fQ.svg";
   const adultIconUrl =
@@ -37,7 +42,7 @@ const MovieCard = ({ movie }) => {
         <div className="badge-list">
           {movie?.genre_ids.map((id, index) => (
             <Badge key={index} bg="danger">
-              {id}
+              {genreList[id]}
             </Badge>
           ))}
         </div>
