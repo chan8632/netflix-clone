@@ -2,12 +2,14 @@
   height: 56vh;
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
 }
 .banner:before {
   content: "";
   background: linear-gradient(to top, black, transparent);
   position: absolute;
   left: 0;
+  bottom: 0;
   height: 56%;
   width: 100%;
 }

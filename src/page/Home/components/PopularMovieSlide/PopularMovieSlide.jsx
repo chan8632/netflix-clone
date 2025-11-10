@@ -2,7 +2,6 @@ import React from "react";
 import { usePopularMoviesQuery } from "../../../../hooks/usePopularMovie";
 import { Alert } from "react-bootstrap";
 import "react-multi-carousel/lib/styles.css";
-import "./PopularMovieSlide.style.css";
 import MovieSlider from "../../../../common/MovieSlider/MovieSlider";
 import { responsives } from "../../../../constants/responsive";
 

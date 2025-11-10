@@ -1,5 +1,5 @@
 import "react-multi-carousel/lib/styles.css";
-import MovieSlide from "../../../../common/MovieSlide/MovieSlide";
+import MovieSlider from "../../../../common/MovieSlider/MovieSlider";
 import { responsives } from "../../../../constants/responsive";
 import { useUpComingMoviesQuery } from "../../../../hooks/useUpComingMovies";
 const UpComingMoviesSlide = () => {
@@ -8,7 +8,7 @@ const UpComingMoviesSlide = () => {
   if (isError) return <div>{error.message}</div>;
 
   return (
-    <MovieSlide
+    <MovieSlider
       title={"up coming movie"}
       responsive={responsives}
       movies={data.results}
