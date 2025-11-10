@@ -2,6 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import { useSearchMovie } from "./../../hooks/useSearchMovie";
 import { Col, Container, Row } from "react-bootstrap";
 import MovieCard from "./../../common/MovieCard/MovieCard";
+import "./MoviesPage.style.css";
 
 const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -14,13 +15,13 @@ const MoviesPage = () => {
   return (
     <Container>
       <Row>
-        <Col xs={12} md={4}>
+        <Col xs={12} md={4} className="card-list">
           필터
         </Col>
         <Col xs={12} md={8}>
           <Row>
             {data.results.map((movie, index) => (
-              <Col key={index}>
+              <Col key={index} className="card-list">
                 <MovieCard movie={movie} />
               </Col>
             ))}
