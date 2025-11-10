@@ -3,7 +3,7 @@ import { usePopularMoviesQuery } from "../../../../hooks/usePopularMovie";
 import { Alert } from "react-bootstrap";
 import "react-multi-carousel/lib/styles.css";
 import "./PopularMovieSlide.style.css";
-import MovieSlide from "../../../../common/MovieSlide/MovieSlide";
+import MovieSlider from "../../../../common/MovieSlider/MovieSlider";
 import { responsives } from "../../../../constants/responsive";
 
 const PopularMovieSlide = () => {
@@ -11,7 +11,7 @@ const PopularMovieSlide = () => {
   if (isLoading) return <div>isLoading</div>;
   if (isError) return <Alert variant={"danger"}>{error.message}</Alert>;
   return (
-    <MovieSlide
+    <MovieSlider
       title={"Popular Movie"}
       responsive={responsives}
       movies={data.results}
