@@ -1,6 +1,6 @@
 import { Alert } from "react-bootstrap";
 import "react-multi-carousel/lib/styles.css";
-import MovieSlide from "../../../../common/MovieSlide/MovieSlide";
+import MovieSlider from "../../../../common/MovieSlider/MovieSlider";
 import { responsives } from "../../../../constants/responsive";
 import { useTopRatedMovie } from "../../../../hooks/useTopRatedMovie";
 const TopRatedMovieSlide = () => {
@@ -9,7 +9,7 @@ const TopRatedMovieSlide = () => {
   if (isError) return <Alert variant={"danger"}>{error.message}</Alert>;
 
   return (
-    <MovieSlide
+    <MovieSlider
       title={"Top Rated Moive"}
       responsive={responsives}
       movies={data.results}

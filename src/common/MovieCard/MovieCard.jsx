@@ -7,6 +7,7 @@ import twoStar from "../../assets/twostar.png";
 import threeStar from "../../assets/threestar.png";
 import fourStar from "../../assets/fourstar.png";
 import fiveStar from "../../assets/fivestar.png";
+import { useGenresList } from "../../hooks/useGenresList";
 
 const MovieCard = ({ movie }) => {
   const starParsing = {
@@ -17,6 +18,8 @@ const MovieCard = ({ movie }) => {
     4: fourStar,
     5: fiveStar,
   };
+  const { data: genreData } = useGenresList();
+  
 
   const allIconUrl =
     "https://i.namu.wiki/i/oue1NCn0ejKPZgHqsUYAer_tvO-7Jarrq_6uqUT4Gkm9H3P0ADs9F-4-TU4R_RXPHXc06RcD9FrWlAlcQYH7fQ.svg";
