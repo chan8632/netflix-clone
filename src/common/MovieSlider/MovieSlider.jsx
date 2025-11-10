@@ -1,8 +1,9 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
 import MovieCard from "../MovieCard/MovieCard";
+import "./MovieSlider.style.css";
 
-const MovieSlide = ({ title, responsive, movies }) => {
+const MovieSlider = ({ title, responsive, movies }) => {
   return (
     <div>
       <h3>{title}</h3>
@@ -21,4 +22,4 @@ const MovieSlide = ({ title, responsive, movies }) => {
   );
 };
 
-export default MovieSlide;
+export default MovieSlider;
