@@ -5,10 +5,10 @@ const fetchGenreList = async () => {
   return await api.get("genre/movie/list");
 };
 
-export const useGenresList = () =>
+export const useMovieGenres = () =>
   useQuery({
     queryKey: ["genres"],
     queryFn: fetchGenreList,
-    select: (result) => result.data,
+    select: (result) => result.data.genres,
     staleTime: 1000 * 60 * 5,
   });
