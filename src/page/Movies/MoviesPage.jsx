@@ -1,5 +1,34 @@
+import { useSearchParams } from "react-router-dom";
+import { useSearchMovie } from "./../../hooks/useSearchMovie";
+import { Col, Container, Row } from "react-bootstrap";
+import MovieCard from "./../../common/MovieCard/MovieCard";
+
 const MoviesPage = () => {
-  return <div>Movies</div>;
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get("q");
+  const { isLoading, data, isError, error } = useSearchMovie(query);
+  console.log(data);
+  if (isLoading) return <div>search data loading</div>;
+  if (isError) return <div>에러메세지 : {error.message}</div>;
+
+  return (
+    <Container>
+      <Row>
+        <Col xs={12} md={4}>
+          필터
+        </Col>
+        <Col xs={12} md={8}>
+          <Row>
+            {data.results.map((movie, index) => (
+              <Col key={index}>
+                <MovieCard movie={movie} />
+              </Col>
+            ))}
+          </Row>
+        </Col>
+      </Row>
+    </Container>
+  );
 };
 
 export default MoviesPage;
