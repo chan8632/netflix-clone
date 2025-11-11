@@ -1,10 +1,13 @@
 import { useSearchParams } from "react-router-dom";
 import { useSearchMovie } from "./../../hooks/useSearchMovie";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Dropdown, Row } from "react-bootstrap";
 import MovieCard from "./../../common/MovieCard/MovieCard";
 import "./MoviesPage.style.css";
 import ReactPaginate from "react-paginate";
 import { useState } from "react";
+import FilterButton from "./components/FilterButton";
+import { useMovieGenres } from "../../hooks/useMovieGenres";
+
 // 페이지네이션 설치
 // 페이지 state 생성
 // 페이지 클릭 시 버튼 변경
@@ -14,6 +17,9 @@ const MoviesPage = () => {
   const [page, setPage] = useState(1);
   const keyword = searchParams.get("q");
   const { isLoading, data, isError, error } = useSearchMovie({ keyword, page });
+  const sortRule = ["인기순", "최신순"];
+  const { data: genreData } = useMovieGenres();
+  const genreList = genreData?.map((genreInfo) => genreInfo.name);
   const handlePageClick = ({ selected }) => {
     setPage(selected + 1);
   };
@@ -22,19 +28,20 @@ const MoviesPage = () => {
 
   return (
     <Container>
+      <Row xs="auto" className="filter-button">
+        <Col>
+          <FilterButton title="정렬기준" items={sortRule} />
+        </Col>
+        <Col>
+          <FilterButton title="장르별 검색" items={genreList} />
+        </Col>
+      </Row>
       <Row>
-        <Col xs={12} md={4} className="card-list">
-          필터
-        </Col>
-        <Col xs={12} md={8}>
-          <Row>
-            {data.results.map((movie, index) => (
-              <Col key={index} className="card-list">
-                <MovieCard movie={movie} />
-              </Col>
-            ))}
-          </Row>
-        </Col>
+        {data.results.map((movie, index) => (
+          <Col key={index} className="card-list">
+            <MovieCard movie={movie} />
+          </Col>
+        ))}
       </Row>
       <ReactPaginate
         nextLabel="next >"
@@ -56,6 +63,7 @@ const MoviesPage = () => {
         activeClassName="active"
         renderOnZeroPageCount={null}
         forcePage={page - 1}
+        className="pagination"
       />
     </Container>
   );
