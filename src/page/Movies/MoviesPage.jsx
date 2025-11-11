@@ -7,21 +7,24 @@ import ReactPaginate from "react-paginate";
 import { useState } from "react";
 import FilterButton from "./components/FilterButton";
 import { useMovieGenres } from "../../hooks/useMovieGenres";
-
+import { usePageStore } from "../../stores/pageStore";
+``
 // 페이지네이션 설치
 // 페이지 state 생성
 // 페이지 클릭 시 버튼 변경
 // 클릭된 버튼으로 query를 줘서 데이터 불러오기
 const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
+  const { page, setPageByParams } = usePageStore();
   const keyword = searchParams.get("q");
   const { isLoading, data, isError, error } = useSearchMovie({ keyword, page });
   const sortRule = ["인기순", "최신순"];
   const { data: genreData } = useMovieGenres();
   const genreList = genreData?.map((genreInfo) => genreInfo.name);
   const handlePageClick = ({ selected }) => {
-    setPage(selected + 1);
+    // setPage(selected + 1);
+    setPageByParams(selected + 1);
   };
   if (isLoading) return <div>search data loading</div>;
   if (isError) return <div>에러메세지 : {error.message}</div>;
