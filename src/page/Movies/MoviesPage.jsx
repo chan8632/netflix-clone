@@ -6,8 +6,8 @@ import "./MoviesPage.style.css";
 
 const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get("q");
-  const { isLoading, data, isError, error } = useSearchMovie(query);
+  const keyword = searchParams.get("q");
+  const { isLoading, data, isError, error } = useSearchMovie({ keyword });
   console.log(data);
   if (isLoading) return <div>search data loading</div>;
   if (isError) return <div>에러메세지 : {error.message}</div>;
