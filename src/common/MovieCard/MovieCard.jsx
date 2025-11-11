@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Badge } from "react-bootstrap";
 import "./MovieCard.style.css";
 import zeroStar from "../../assets/zerostar.png";
@@ -7,9 +7,10 @@ import twoStar from "../../assets/twostar.png";
 import threeStar from "../../assets/threestar.png";
 import fourStar from "../../assets/fourstar.png";
 import fiveStar from "../../assets/fivestar.png";
+import imageError from "../../assets/imageError.png";
 import { useMovieGenres } from "../../hooks/useMovieGenres";
-
 const MovieCard = ({ movie }) => {
+  const [cardBackImg, setCardBackImg] = useState("");
   const starParsing = {
     0: zeroStar,
     1: oneStar,
@@ -32,7 +33,11 @@ const MovieCard = ({ movie }) => {
   return (
     <div
       style={{
-        backgroundImage: `url(https://image.tmdb.org/t/p/w220_and_h330_face/${movie?.poster_path})`,
+        backgroundImage: `url(${
+          movie.poster_path
+            ? `https://image.tmdb.org/t/p/w220_and_h330_face/${movie?.poster_path}`
+            : imageError
+        })`,
       }}
       className="movie-card"
     >
