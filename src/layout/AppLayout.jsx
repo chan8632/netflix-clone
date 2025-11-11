@@ -6,14 +6,17 @@ import Navbar from "react-bootstrap/Navbar";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import NetflixLogo from "../assets/netflix.png";
 import { useState } from "react";
+import { usePageStore } from "../stores/pageStore";
 
 const AppLayout = () => {
   const [keyword, setKeyword] = useState("");
   const navigate = useNavigate();
+  const { setPageByParams } = usePageStore();
   const searchByKeyword = (event) => {
     event.preventDefault();
     navigate(`/movies?q=${keyword}`);
     setKeyword("");
+    setPageByParams(1);
   };
   return (
     <div>
