@@ -1,14 +1,13 @@
-import { useSearchParams } from "react-router-dom";
-import { useSearchMovie } from "./../../hooks/useSearchMovie";
-import { Col, Container, Dropdown, Row } from "react-bootstrap";
-import MovieCard from "./../../common/MovieCard/MovieCard";
-import "./MoviesPage.style.css";
+import { Alert, Col, Container, Row } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
-import { useState } from "react";
-import FilterButton from "./components/FilterButton";
+import { useSearchParams } from "react-router-dom";
 import { useMovieGenres } from "../../hooks/useMovieGenres";
 import { usePageStore } from "../../stores/pageStore";
-``
+import MovieCard from "./../../common/MovieCard/MovieCard";
+import { useSearchMovie } from "./../../hooks/useSearchMovie";
+import FilterButton from "./components/FilterButton";
+import "./MoviesPage.style.css";
+
 // 페이지네이션 설치
 // 페이지 state 생성
 // 페이지 클릭 시 버튼 변경
@@ -28,9 +27,10 @@ const MoviesPage = () => {
   };
   if (isLoading) return <div>search data loading</div>;
   if (isError) return <div>에러메세지 : {error.message}</div>;
-
+  if (data.results.length === 0)
+    return <Alert variant="danger">{keyword}와 관련된 영화는 없습니다!</Alert>;
   return (
-    <Container>
+    <Container className="movies-page-container">
       <Row xs="auto" className="filter-button">
         <Col>
           <FilterButton title="정렬기준" items={sortRule} />
@@ -47,12 +47,12 @@ const MoviesPage = () => {
         ))}
       </Row>
       <ReactPaginate
-        nextLabel="next >"
+        nextLabel=">"
         onPageChange={handlePageClick}
         pageRangeDisplayed={3}
         marginPagesDisplayed={2}
         pageCount={data?.total_pages}
-        previousLabel="< previous"
+        previousLabel="<"
         pageClassName="page-item"
         pageLinkClassName="page-link"
         previousClassName="page-item"

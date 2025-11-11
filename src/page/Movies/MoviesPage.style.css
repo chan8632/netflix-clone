@@ -2,7 +2,58 @@
   display: flex;
   justify-content: center;
 }
-.pagination {
+
+/* MoviesPage.style.css */
+
+/* 👇 .movies-page-container 추가 */
+.movies-page-container .card-list {
   display: flex;
   justify-content: center;
+}
+
+/* 👇 .movies-page-container 추가 */
+.movies-page-container .pagination {
+  display: flex;
+  justify-content: center;
+  /* 숫자를 감싸는 <li> 태그 사이의 간격 */
+  --bs-pagination-margin-start: 8px;
+
+  /* 평상시 페이지 아이템 */
+  --bs-pagination-color: #aaa; /* 숫자 색상 (연한 회색) */
+  --bs-pagination-bg: transparent; /* 배경 없음 */
+  --bs-pagination-border-width: 0; /* 테두리 없음 */
+
+  /* 마우스 호버 시 */
+  --bs-pagination-hover-color: #fff; /* 텍스트 (흰색) */
+  --bs-pagination-hover-bg: #333; /* 배경 (어두운 회색) */
+  --bs-pagination-hover-border-color: transparent;
+
+  /* 현재 활성화된 페이지 (가장 중요!) */
+  --bs-pagination-active-color: #fff; /* 텍스트 (흰색) */
+  --bs-pagination-active-bg: #e50914; /* 배경 (넷플릭스 레드) */
+  --bs-pagination-active-border-color: #e50914;
+
+  /* 비활성화된 아이템 (예: < Previous) */
+  --bs-pagination-disabled-color: #555; /* 텍스트 (진한 회색) */
+  --bs-pagination-disabled-bg: transparent;
+  --bs-pagination-disabled-border-color: transparent;
+
+  /* 마우스 호버 시 */
+  --bs-pagination-hover-color: #fff;
+  --bs-pagination-hover-bg: #333;
+  --bs-pagination-hover-border-color: transparent;
+
+  /* 👇 [추가] 포커스(클릭) 시 스타일 */
+  --bs-pagination-focus-color: #fff; /* 포커스 시 텍스트 (호버와 동일하게) */
+  --bs-pagination-focus-bg: #333; /* 포커스 시 배경 (호버와 동일하게) */
+  --bs-pagination-focus-box-shadow: none; /* 파란색 테두리(그림자) 제거 */
+
+  /* 현재 활성화된 페이지 (가장 중요!) */
+  --bs-pagination-active-color: #fff;
+}
+
+/* 👇 .movies-page-container 추가 */
+.movies-page-container .pagination .page-link {
+  border-radius: 4px !important;
+  transition: all 0.2s ease; /* 부드러운 배경색 변경 효과 */
 }
