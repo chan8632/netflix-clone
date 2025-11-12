@@ -18,22 +18,26 @@ const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { page, setPageByParams } = usePageStore();
   const keyword = searchParams.get("q");
+  // 영화페이지에 넣을 데이터
+  // const [realMovieData, setRealMovieData] = useState(null);
   // 필터
   const [sortRule, setSortRule] = useState(null);
   const popularSort = (data) => {
-    const popularSortList = data.sort((a, b) => b.popularity - a.popularity);
+    const popularSortList = data.sort((a, b) => b.vote_count - a.vote_count);
     return popularSortList;
   };
-  useEffect(() => {
-    if (sortRule === "인기순") {
-      console.log(popularSort(data?.results));
-    }
-  }, [sortRule]);
 
   // 영화 정보
   const { isLoading, data, isError, error } = useSearchMovie({ keyword, page });
-  console.log(data?.results);
+  // console.log(data?.results);
 
+  // useEffect(() => {
+  //   if (sortRule === null) {
+  //     setRealMovieData(data?.results);
+  //   } else if (sortRule === "인기순") {
+  //     setRealMovieData(popularSort(data?.results));
+  //   }
+  // }, [data, sortRule]);
   const sortRuleList = ["인기순", "최신순"];
   // 장르 가져오기
   const { data: genreData } = useMovieGenres();

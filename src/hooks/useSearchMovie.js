@@ -9,7 +9,7 @@ const fetchSearchMovie = ({ keyword, page }) => {
 
 export const useSearchMovie = ({ keyword, page }) => {
   return useQuery({
-    queryKey: ["search-data", {keyword, page}],
+    queryKey: ["search-data", { keyword, page }],
     queryFn: () => fetchSearchMovie({ keyword, page }),
     select: (result) => result.data,
   });
