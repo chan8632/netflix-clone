@@ -7,22 +7,39 @@ import MovieCard from "./../../common/MovieCard/MovieCard";
 import { useSearchMovie } from "./../../hooks/useSearchMovie";
 import FilterButton from "./components/FilterButton";
 import "./MoviesPage.style.css";
+import { useEffect, useState } from "react";
 
 // 페이지네이션 설치
 // 페이지 state 생성
 // 페이지 클릭 시 버튼 변경
 // 클릭된 버튼으로 query를 줘서 데이터 불러오기
 const MoviesPage = () => {
+  // 검색 키워드 추출 및 불러오기
   const [searchParams, setSearchParams] = useSearchParams();
-  // const [page, setPage] = useState(1);
   const { page, setPageByParams } = usePageStore();
   const keyword = searchParams.get("q");
+  // 필터
+  const [sortRule, setSortRule] = useState(null);
+  const popularSort = (data) => {
+    const popularSortList = data.sort((a, b) => b.popularity - a.popularity);
+    return popularSortList;
+  };
+  useEffect(() => {
+    if (sortRule === "인기순") {
+      console.log(popularSort(data?.results));
+    }
+  }, [sortRule]);
+
+  // 영화 정보
   const { isLoading, data, isError, error } = useSearchMovie({ keyword, page });
-  const sortRule = ["인기순", "최신순"];
+  console.log(data?.results);
+
+  const sortRuleList = ["인기순", "최신순"];
+  // 장르 가져오기
   const { data: genreData } = useMovieGenres();
   const genreList = genreData?.map((genreInfo) => genreInfo.name);
+  // 페이지네이션 숫자 버튼 클릭 시
   const handlePageClick = ({ selected }) => {
-    // setPage(selected + 1);
     setPageByParams(selected + 1);
   };
   if (isLoading) return <div>search data loading</div>;
@@ -33,7 +50,11 @@ const MoviesPage = () => {
     <Container className="movies-page-container">
       <Row xs="auto" className="filter-button">
         <Col>
-          <FilterButton title="정렬기준" items={sortRule} />
+          <FilterButton
+            title="정렬기준"
+            items={sortRuleList}
+            setSortRule={setSortRule}
+          />
         </Col>
         <Col>
           <FilterButton title="장르별 검색" items={genreList} />

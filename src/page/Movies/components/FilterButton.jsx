@@ -1,9 +1,8 @@
 import React from "react";
 import { Dropdown } from "react-bootstrap";
 import "./FilterButton.style.css";
-const handleFilter = () => {
-};
-const FilterButton = ({ title, items }) => {
+
+const FilterButton = ({ title, items, setSortRule }) => {
   return (
     <Dropdown className="filter-button">
       <Dropdown.Toggle variant="danger" id="dropdown-basic">
@@ -12,7 +11,10 @@ const FilterButton = ({ title, items }) => {
 
       <Dropdown.Menu>
         {items.map((item, index) => (
-          <Dropdown.Item onClick={handleFilter} key={index}>
+          <Dropdown.Item
+            onClick={(e) => setSortRule(e.target.innerText)}
+            key={index}
+          >
             {item}
           </Dropdown.Item>
         ))}
