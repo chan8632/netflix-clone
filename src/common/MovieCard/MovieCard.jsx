@@ -9,8 +9,9 @@ import fourStar from "../../assets/fourstar.png";
 import fiveStar from "../../assets/fivestar.png";
 import imageError from "../../assets/imageError.png";
 import { useMovieGenres } from "../../hooks/useMovieGenres";
+import { useNavigate } from "react-router-dom";
 const MovieCard = ({ movie }) => {
-  const [cardBackImg, setCardBackImg] = useState("");
+  const navigate = useNavigate();
   const starParsing = {
     0: zeroStar,
     1: oneStar,
@@ -40,6 +41,9 @@ const MovieCard = ({ movie }) => {
         })`,
       }}
       className="movie-card"
+      onClick={() => {
+        navigate(`/movies/${movie?.id}`);
+      }}
     >
       <div className="overlay">
         <h4>{movie?.title}</h4>

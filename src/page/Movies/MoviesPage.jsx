@@ -18,26 +18,17 @@ const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { page, setPageByParams } = usePageStore();
   const keyword = searchParams.get("q");
-  // 영화페이지에 넣을 데이터
-  // const [realMovieData, setRealMovieData] = useState(null);
   // 필터
   const [sortRule, setSortRule] = useState(null);
   const popularSort = (data) => {
-    const popularSortList = data.sort((a, b) => b.vote_count - a.vote_count);
+    const popularSortList = [...data].sort(
+      (a, b) => b.vote_count - a.vote_count
+    );
     return popularSortList;
   };
-
   // 영화 정보
   const { isLoading, data, isError, error } = useSearchMovie({ keyword, page });
-  // console.log(data?.results);
-
-  // useEffect(() => {
-  //   if (sortRule === null) {
-  //     setRealMovieData(data?.results);
-  //   } else if (sortRule === "인기순") {
-  //     setRealMovieData(popularSort(data?.results));
-  //   }
-  // }, [data, sortRule]);
+  console.log("dd", data);
   const sortRuleList = ["인기순", "최신순"];
   // 장르 가져오기
   const { data: genreData } = useMovieGenres();
@@ -46,10 +37,18 @@ const MoviesPage = () => {
   const handlePageClick = ({ selected }) => {
     setPageByParams(selected + 1);
   };
+
   if (isLoading) return <div>search data loading</div>;
   if (isError) return <div>에러메세지 : {error.message}</div>;
   if (data.results.length === 0)
     return <Alert variant="danger">{keyword}와 관련된 영화는 없습니다!</Alert>;
+
+  //영화 데이터 파생
+  let displayData = data.results;
+  if (sortRule === "인기순") {
+    displayData = popularSort(displayData);
+  }
+
   return (
     <Container className="movies-page-container">
       <Row xs="auto" className="filter-button">
@@ -65,9 +64,9 @@ const MoviesPage = () => {
         </Col>
       </Row>
       <Row>
-        {data.results.map((movie, index) => (
+        {displayData.map((movie, index) => (
           <Col key={index} className="card-list">
-            <MovieCard movie={movie} />
+            <MovieCard movie={movie}  />
           </Col>
         ))}
       </Row>

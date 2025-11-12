@@ -1,0 +1,35 @@
+.banner {
+  height: 56vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.banner:before {
+  content: "";
+  background: linear-gradient(to top, black, transparent);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 56%;
+  width: 100%;
+}
+
+.banner-text-area {
+  width: 33vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+  padding: 2rem;
+  font-family: sans-serif;
+}
+@media (max-width: 1100px) {
+  .banner-text-area {
+    width: 100vw;
+  }
+}
+
+.banner-text-area * {
+  z-index: 2;
+}
