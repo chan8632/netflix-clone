@@ -1,6 +1,15 @@
-
+import { useParams } from "react-router-dom";
+import { useMovieDetail } from "../../hooks/useMovieDetail";
+import Banner from "./components/Banner/Banner";
 const MovieDetailPage = () => {
-  return <div>영화 상세 페이지</div>;
+  const { id } = useParams();
+  const { isLoading, data, isError, error } = useMovieDetail({ movieId: id });
+  console.log("ddd", data);
+  return (
+    <div>
+      <Banner movieData={data} />
+    </div>
+  );
 };
 
 export default MovieDetailPage;
