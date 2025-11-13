@@ -1,0 +1,31 @@
+import React, { useState } from "react";
+import { Card} from "react-bootstrap";
+
+const ReviewItem = ({ review }) => {
+  const [fold, setFold] = useState(true);
+  const handleHeight = () => {
+    setFold((prev) => !prev);
+  };
+  return (
+    <Card
+      bg={"dark"}
+      text={"dark".toLowerCase() === "light" ? "dark" : "white"}
+      className="m-4"
+    >
+      <Card.Header>{review.author}</Card.Header>
+      <Card.Body>
+        {/* max-height: 100px, overflow:hidden, transition: */}
+        <Card.Text
+          className={`review-text-area ${fold ? "fold" : "expand"} mb-3`}
+        >
+          {review.content}
+          <button className="add-button" onClick={handleHeight}>
+            {fold ? "더보기" : "접기"}
+          </button>
+        </Card.Text>
+      </Card.Body>
+    </Card>
+  );
+};
+
+export default ReviewItem;

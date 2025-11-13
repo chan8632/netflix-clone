@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useReview } from "../../../../hooks/useReview";
-import { Card, Col, Container, Row } from "react-bootstrap";
+import "./Review.style.css";
+import { Col, Container, Row } from "react-bootstrap";
+import ReviewItem from "./components/ReviewItem";
 
 const Review = ({ movieId }) => {
   const { data } = useReview({ movieId });
@@ -12,16 +14,7 @@ const Review = ({ movieId }) => {
         <Row>
           <Col>
             {data?.results.map((review) => (
-              <Card
-                bg={"dark"}
-                text={"dark".toLowerCase() === "light" ? "dark" : "white"}
-                className="m-4"
-              >
-                <Card.Header>{review.author}</Card.Header>
-                <Card.Body>
-                  <Card.Text>{review.content}</Card.Text>
-                </Card.Body>
-              </Card>
+              <ReviewItem review={review} />
             ))}
           </Col>
         </Row>
