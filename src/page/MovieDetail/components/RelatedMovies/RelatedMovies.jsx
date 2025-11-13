@@ -7,7 +7,6 @@ const RelatedMovies = ({ movieId }) => {
   const { isLoading, data, isError, error } = useRelatedMovie({ movieId });
   if (isLoading) return <div>isLoading</div>;
   if (isError) return <Alert variant={"danger"}>{error.message}</Alert>;
-  console.log(data);
   return (
     <MovieSlider
       title={"Related Movies"}

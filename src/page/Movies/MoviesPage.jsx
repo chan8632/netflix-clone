@@ -28,7 +28,6 @@ const MoviesPage = () => {
   };
   // 영화 정보
   const { isLoading, data, isError, error } = useSearchMovie({ keyword, page });
-  console.log("dd", data);
   const sortRuleList = ["인기순", "최신순"];
   // 장르 가져오기
   const { data: genreData } = useMovieGenres();

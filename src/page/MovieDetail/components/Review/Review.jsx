@@ -6,7 +6,6 @@ import ReviewItem from "./components/ReviewItem";
 
 const Review = ({ movieId }) => {
   const { data } = useReview({ movieId });
-  console.log("rrr", data);
   return (
     <div>
       <Container>
@@ -14,7 +13,7 @@ const Review = ({ movieId }) => {
         <Row>
           <Col>
             {data?.results.map((review) => (
-              <ReviewItem review={review} />
+              <ReviewItem review={review} key={review.id} />
             ))}
           </Col>
         </Row>
