@@ -1,15 +1,17 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Card } from "react-bootstrap";
 
 const ReviewItem = ({ review }) => {
   const [fold, setFold] = useState(true);
   const [showAddButton, setShowAddButton] = useState(false);
   const textRef = useRef(null);
-  if (textRef.current) {
-    if (textRef.current.offsetHeight >= 100) {
-      setShowAddButton(true);
+  useEffect(() => {
+    if (textRef.current) {
+      if (textRef.current.offsetHeight >= 100) {
+        setShowAddButton(true);
+      }
     }
-  }
+  }, []);
   const handleHeight = () => {
     setFold((prev) => !prev);
   };
@@ -21,7 +23,6 @@ const ReviewItem = ({ review }) => {
     >
       <Card.Header>{review.author}</Card.Header>
       <Card.Body>
-        {/* max-height: 100px, overflow:hidden, transition: */}
         <Card.Text
           className={`review-text-area ${fold ? "fold" : "expand"} mb-3`}
           ref={textRef}
