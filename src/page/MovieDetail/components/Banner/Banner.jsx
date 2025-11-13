@@ -1,5 +1,10 @@
+import { useState } from "react";
 import "./Banner.style.css";
+import TrailerModal from "../TrailerModal/TrailerModal";
+import { Button } from 'react-bootstrap';
 const Banner = ({ movieData }) => {
+  const [modalShow, setModalShow] = useState(false);
+
   return (
     <div
       style={{
@@ -10,6 +15,14 @@ const Banner = ({ movieData }) => {
       <div className="banner-text-area text-white">
         <h1>{movieData?.title}</h1>
         <p>{movieData?.overview}</p>
+        <Button variant="light" onClick={() => setModalShow(true)}>
+          ▶ trailer play
+        </Button>
+
+        <TrailerModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+        />
       </div>
     </div>
   );

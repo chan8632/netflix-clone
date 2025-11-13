@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { useReview } from "../../../../hooks/useReview";
-import "./Review.style.css";
 import { Col, Container, Row } from "react-bootstrap";
+import { useReview } from "../../../../hooks/useReview";
 import ReviewItem from "./components/ReviewItem";
+import "./Review.style.css";
 
 const Review = ({ movieId }) => {
   const { data } = useReview({ movieId });

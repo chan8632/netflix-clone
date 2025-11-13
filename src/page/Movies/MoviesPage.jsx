@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Alert, Col, Container, Row } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
 import { useSearchParams } from "react-router-dom";
@@ -7,7 +8,6 @@ import MovieCard from "./../../common/MovieCard/MovieCard";
 import { useSearchMovie } from "./../../hooks/useSearchMovie";
 import FilterButton from "./components/FilterButton";
 import "./MoviesPage.style.css";
-import { useEffect, useState } from "react";
 
 // 페이지네이션 설치
 // 페이지 state 생성
