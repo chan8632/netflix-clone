@@ -4,6 +4,7 @@ import Banner from "./components/Banner/Banner";
 import MovieInfo from "./components/MovieInfo/MovieInfo";
 import { Col, Container, Row } from "react-bootstrap";
 import RelatedMovies from "./components/RelatedMovies/RelatedMovies";
+import Review from "./components/Review/Review";
 const MovieDetailPage = () => {
   const { id } = useParams();
   const { data } = useMovieDetail({ movieId: id });
@@ -12,6 +13,7 @@ const MovieDetailPage = () => {
       <Banner movieData={data} />
       <MovieInfo movieData={data} />
       <RelatedMovies movieId={id} />
+      <Review movieId={id} />
     </div>
   );
 };

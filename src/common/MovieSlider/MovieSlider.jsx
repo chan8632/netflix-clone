@@ -2,11 +2,18 @@ import React from "react";
 import Carousel from "react-multi-carousel";
 import MovieCard from "../MovieCard/MovieCard";
 import "./MovieSlider.style.css";
+import { Col, Container, Row } from "react-bootstrap";
 
 const MovieSlider = ({ title, responsive, movies }) => {
   return (
     <div>
-      <h3>{title}</h3>
+      <Container>
+        <Row>
+          <Col>
+            <h3>{title}</h3>
+          </Col>
+        </Row>
+      </Container>
       <Carousel
         infinite={true}
         centerMode={true}
