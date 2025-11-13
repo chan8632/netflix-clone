@@ -1,5 +1,5 @@
 .banner {
-  height: 56vh;
+  min-height: 80vh;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
@@ -10,8 +10,13 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  height: 56%;
+  min-height: 56%;
   width: 100%;
+}
+@media (max-width: 500px) {
+  .banner {
+    height: 90vh;
+  }
 }
 
 .banner-text-area {
