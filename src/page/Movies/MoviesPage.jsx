@@ -26,11 +26,19 @@ const MoviesPage = () => {
     );
     return popularSortList;
   };
+  // const genreFilter = (genre, data) => {
+  //   const filteredMovie = [...data].filter((movie) => {
+  //     genreData
+  //   })
+  // };
   // 영화 정보
   const { isLoading, data, isError, error } = useSearchMovie({ keyword, page });
+  console.log(data?.results);
+
   const sortRuleList = ["인기순", "최신순"];
   // 장르 가져오기
   const { data: genreData } = useMovieGenres();
+
   const genreList = genreData?.map((genreInfo) => genreInfo.name);
   // 페이지네이션 숫자 버튼 클릭 시
   const handlePageClick = ({ selected }) => {
@@ -65,7 +73,7 @@ const MoviesPage = () => {
       <Row>
         {displayData.map((movie, index) => (
           <Col key={index} className="card-list">
-            <MovieCard movie={movie}  />
+            <MovieCard movie={movie} />
           </Col>
         ))}
       </Row>
