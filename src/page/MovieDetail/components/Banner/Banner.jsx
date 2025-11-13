@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Banner.style.css";
 import TrailerModal from "../TrailerModal/TrailerModal";
-import { Button } from 'react-bootstrap';
+import { Button } from "react-bootstrap";
 const Banner = ({ movieData }) => {
   const [modalShow, setModalShow] = useState(false);
 
@@ -22,6 +22,7 @@ const Banner = ({ movieData }) => {
         <TrailerModal
           show={modalShow}
           onHide={() => setModalShow(false)}
+          movieId={movieData?.id}
         />
       </div>
     </div>
