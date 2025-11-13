@@ -14,7 +14,7 @@ const MovieSlider = ({ title, responsive, movies }) => {
         itemClass="move-slider p-1"
         responsive={responsive}
       >
-        {movies.map((movie, index) => (
+        {movies?.map((movie, index) => (
           <MovieCard movie={movie} key={index} />
         ))}
       </Carousel>
