@@ -1,24 +1,6 @@
-/* 1. player-wrapper: 
-  - width: 100%로 부모(Modal.Body)의 너비를 따릅니다.
-  - padding-top: 56.25%로 16:9 비율의 높이를 확보합니다. (9 / 16 = 0.5625)
-  - position: relative로 자식 요소의 기준점이 됩니다.
-*/
 .player-wrapper {
-  position: relative;
-  width: 100%;
-  padding-top: 56.25%; /* 16:9 Aspect Ratio */
-  overflow: hidden;
+ 
 }
-
-/* 2. yt-container (react-youtube 컴포넌트):
-  - position: absolute로 부모(player-wrapper)의 공간을 꽉 채웁니다.
-  - top, left, width, height: 100%로 설정하여
-    padding-top으로 만든 빈 공간을 비디오가 채우게 합니다.
-*/
 .player-wrapper .yt-container {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
 }

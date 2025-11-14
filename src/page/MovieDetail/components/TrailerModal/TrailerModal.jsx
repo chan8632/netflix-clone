@@ -8,7 +8,7 @@ import "./TrailerModal.style.css";
 const TrailerModal = ({ movieId, ...rest }) => {
   const opts = {
     width: "100%",
-    height: "100%",
+    height: "500px",
   };
   function onReady(event) {
     // access to player in all event handlers via event.target
@@ -25,15 +25,13 @@ const TrailerModal = ({ movieId, ...rest }) => {
       data-bs-theme="dark"
     >
       <Modal.Header closeButton></Modal.Header>
-      <Modal.Body className="bg-dark ">
-        <div className="player-wrapper">
-          <YouTube
-            videoId={data?.results[0]?.key}
-            onReady={onReady}
-            opts={opts}
-            className="yt-container"
-          />
-        </div>
+      <Modal.Body className="bg-dark d-flex justify-content-center player-wrapper">
+        <YouTube
+          videoId={data?.results[0]?.key}
+          onReady={onReady}
+          opts={opts}
+          className="yt-container"
+        />
       </Modal.Body>
     </Modal>
   );
