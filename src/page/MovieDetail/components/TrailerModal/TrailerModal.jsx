@@ -4,7 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import YouTube from "react-youtube";
 import { useTrailerId } from "../../../../hooks/useTrailerId";
 import { Col, Container, Row } from "react-bootstrap";
-import "./TrailerModal.style.css";
+import styles from "./TrailerModal.module.css";
 const TrailerModal = ({ movieId, ...rest }) => {
   const opts = {
     width: "100%",
@@ -26,12 +26,12 @@ const TrailerModal = ({ movieId, ...rest }) => {
     >
       <Modal.Header closeButton></Modal.Header>
       <Modal.Body className="bg-dark ">
-        <div className="player-wrapper">
+        <div className={styles.playerWrapper}>
           <YouTube
             videoId={data?.results[0]?.key}
             onReady={onReady}
             opts={opts}
-            className="yt-container"
+            className={styles.ytContainer}
           />
         </div>
       </Modal.Body>

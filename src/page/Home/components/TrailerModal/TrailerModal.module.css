@@ -3,7 +3,7 @@
   - padding-top: 56.25%로 16:9 비율의 높이를 확보합니다. (9 / 16 = 0.5625)
   - position: relative로 자식 요소의 기준점이 됩니다.
 */
-.player-wrapper {
+.playerWrapper {
   position: relative;
   width: 100%;
   padding-top: 56.25%; /* 16:9 Aspect Ratio */
@@ -15,7 +15,7 @@
   - top, left, width, height: 100%로 설정하여
     padding-top으로 만든 빈 공간을 비디오가 채우게 합니다.
 */
-.player-wrapper .yt-container {
+.playerWrapper .ytContainer {
   position: absolute;
   top: 0;
   left: 0;
