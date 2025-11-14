@@ -15,7 +15,6 @@ const TrailerModal = ({ movieId, ...rest }) => {
     event.target.pauseVideo();
   }
   const { data } = useTrailerId({ movieId });
-  console.log("tt", data);
   return (
     <Modal
       {...rest}
