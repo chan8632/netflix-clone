@@ -39,10 +39,8 @@ const MoviesPage = () => {
     return sortList;
   };
 
-  console.log("mm", data?.results);
   const [displayData, setDisplayData] = useState([]);
   // 화면에 보일 데이터
-  console.log("1234", displayData);
 
   const sortRuleList = ["리뷰 많은 순", "최신순"];
   // 장르 가져오기
