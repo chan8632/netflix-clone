@@ -67,7 +67,11 @@ const MoviesPage = () => {
           />
         </Col>
         <Col>
-          <FilterButton title="장르별 검색" items={genreList} />
+          <FilterButton
+            title="장르별 검색"
+            items={genreList}
+            setSortRule={setSortRule}
+          />
         </Col>
       </Row>
       <Row>
