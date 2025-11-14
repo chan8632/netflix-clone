@@ -4,16 +4,12 @@ import Modal from "react-bootstrap/Modal";
 import YouTube from "react-youtube";
 import { useTrailerId } from "../../../../hooks/useTrailerId";
 import { Col, Container, Row } from "react-bootstrap";
-import "./TrailerModal.style.css";
+import styles from "./TrailerModal.module.css";
 const TrailerModal = ({ movieId, ...rest }) => {
-  //   const opts = {
-  //     playerVars: {
-  //       // https://developers.google.com/youtube/player_parameters
-  //       width: "100%",
-  //       height: "100%",
-  //       autoplay: 1,
-  //     },
-  //   };
+  const opts = {
+    width: "100%",
+    height: "100%",
+  };
   function onReady(event) {
     // access to player in all event handlers via event.target
     event.target.pauseVideo();
@@ -29,12 +25,13 @@ const TrailerModal = ({ movieId, ...rest }) => {
       data-bs-theme="dark"
     >
       <Modal.Header closeButton></Modal.Header>
-      <Modal.Body className="bg-dark d-flex justify-content-center">
-        <div className="player-wrapper">
+      <Modal.Body className="bg-dark ">
+        <div className={styles.playerWrapper}>
           <YouTube
-            videoId={data?.results[0].key}
+            videoId={data?.results[0]?.key}
             onReady={onReady}
-            className="player" 
+            opts={opts}
+            className={styles.ytContainer}
           />
         </div>
       </Modal.Body>
