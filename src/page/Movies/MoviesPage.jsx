@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Alert, Col, Container, Row } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
 import { useSearchParams } from "react-router-dom";
@@ -18,28 +18,48 @@ const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { page, setPageByParams } = usePageStore();
   const keyword = searchParams.get("q");
-  // 필터
+  // 정렬 state
   const [sortRule, setSortRule] = useState(null);
-  const popularSort = (data) => {
+  // 분류 state
+  const [category, setCategory] = useState(null);
+
+  // 정렬 함수
+  const reviewsCountSort = (data) => {
     const popularSortList = [...data].sort(
       (a, b) => b.vote_count - a.vote_count
     );
     return popularSortList;
   };
-  // const genreFilter = (genre, data) => {
-  //   const filteredMovie = [...data].filter((movie) => {
-  //     genreData
-  //   })
-  // };
+  const upComingSort = (data) => {
+    const sortList = [...data].sort(
+      (a, b) => new Date(b.release_date) - new Date(a.release_date)
+    );
+    return sortList;
+  };
+
   // 영화 정보
   const { isLoading, data, isError, error } = useSearchMovie({ keyword, page });
-  console.log(data?.results);
+  console.log("mm", data?.results);
 
-  const sortRuleList = ["인기순", "최신순"];
+  const sortRuleList = ["리뷰 많은 순", "최신순"];
   // 장르 가져오기
-  const { data: genreData } = useMovieGenres();
 
+  const { data: genreData } = useMovieGenres();
   const genreList = genreData?.map((genreInfo) => genreInfo.name);
+  // category(이름)을 id로 변경
+  // id로 필터링해서 데이터 가공
+  const matchGenreAndCategory = genreData?.find(
+    (genreInfo) => genreInfo.name === category
+  );
+  // 데이터 가지고 와서 필터기준과 매칭
+  const filterMovie = (data, matching) => {
+    const matchingData = [...data].filter((movie) =>
+      movie.genre_ids.includes(matching)
+    );
+    return matchingData;
+  };
+  // 장르 이름 리스트
+
   // 페이지네이션 숫자 버튼 클릭 시
   const handlePageClick = ({ selected }) => {
     setPageByParams(selected + 1);
@@ -50,11 +70,18 @@ const MoviesPage = () => {
   if (data.results.length === 0)
     return <Alert variant="danger">{keyword}와 관련된 영화는 없습니다!</Alert>;
 
-  //영화 데이터 파생
+  //영화 소트 로직
   let displayData = data.results;
-  if (sortRule === "인기순") {
-    displayData = popularSort(displayData);
+  if (sortRule === "리뷰 많은 순") {
+    displayData = reviewsCountSort(displayData);
+    console.log("rr", displayData);
+  } else if (sortRule === "최신순") {
+    displayData = upComingSort(displayData);
+    console.log("ddd", displayData);
   }
+
+  //영화 필터링 로직
+  useEffect(() => {}, [category]);
 
   return (
     <Container className="movies-page-container">
@@ -63,14 +90,14 @@ const MoviesPage = () => {
           <FilterButton
             title="정렬기준"
             items={sortRuleList}
-            setSortRule={setSortRule}
+            dataHandling={setSortRule}
           />
         </Col>
         <Col>
           <FilterButton
             title="장르별 검색"
             items={genreList}
-            setSortRule={setSortRule}
+            dataHandling={setCategory}
           />
         </Col>
       </Row>

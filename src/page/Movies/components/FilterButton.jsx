@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import "./FilterButton.style.css";
 
-const FilterButton = ({ title, items, setSortRule }) => {
+const FilterButton = ({ title, items, dataHandling }) => {
   const [buttonText, setButtonText] = useState(title);
   const selectButton = (event) => {
     const selectedText = event.target.innerText;
-    setSortRule(selectedText);
+    dataHandling(selectedText);
     setButtonText(selectedText);
   };
   return (
@@ -16,7 +16,7 @@ const FilterButton = ({ title, items, setSortRule }) => {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        {items.map((item, index) => (
+        {items?.map((item, index) => (
           <Dropdown.Item onClick={selectButton} key={index}>
             {item}
           </Dropdown.Item>
