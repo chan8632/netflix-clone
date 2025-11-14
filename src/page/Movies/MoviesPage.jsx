@@ -19,9 +19,11 @@ const MoviesPage = () => {
   const { page, setPageByParams } = usePageStore();
   const keyword = searchParams.get("q");
   // 정렬 state
-  const [sortRule, setSortRule] = useState(null);
+  const [sortRule, setSortRule] = useState("");
   // 분류 state
   const [category, setCategory] = useState(null);
+  // 영화 정보
+  const { isLoading, data, isError, error } = useSearchMovie({ keyword, page });
 
   // 정렬 함수
   const reviewsCountSort = (data) => {
@@ -37,9 +39,10 @@ const MoviesPage = () => {
     return sortList;
   };
 
-  // 영화 정보
-  const { isLoading, data, isError, error } = useSearchMovie({ keyword, page });
   console.log("mm", data?.results);
+  const [displayData, setDisplayData] = useState(data);
+  // 화면에 보일 데이터
+  console.log("1234", displayData);
 
   const sortRuleList = ["리뷰 많은 순", "최신순"];
   // 장르 가져오기
@@ -60,6 +63,17 @@ const MoviesPage = () => {
   };
   // 장르 이름 리스트
 
+  //영화 필터링 로직
+  useEffect(() => {
+    let curData;
+    if (sortRule === "리뷰 많은 순") {
+      curData = reviewsCountSort(displayData);
+    } else if (sortRule === "최신순") {
+      curData = upComingSort(displayData);
+    }
+    setDisplayData(curData);
+  }, [sortRule]);
+
   // 페이지네이션 숫자 버튼 클릭 시
   const handlePageClick = ({ selected }) => {
     setPageByParams(selected + 1);
@@ -69,19 +83,6 @@ const MoviesPage = () => {
   if (isError) return <div>에러메세지 : {error.message}</div>;
   if (data.results.length === 0)
     return <Alert variant="danger">{keyword}와 관련된 영화는 없습니다!</Alert>;
-
-  //영화 소트 로직
-  let displayData = data.results;
-  if (sortRule === "리뷰 많은 순") {
-    displayData = reviewsCountSort(displayData);
-    console.log("rr", displayData);
-  } else if (sortRule === "최신순") {
-    displayData = upComingSort(displayData);
-    console.log("ddd", displayData);
-  }
-
-  //영화 필터링 로직
-  useEffect(() => {}, [category]);
 
   return (
     <Container className="movies-page-container">
@@ -102,7 +103,7 @@ const MoviesPage = () => {
         </Col>
       </Row>
       <Row>
-        {displayData.map((movie, index) => (
+        {displayData?.results.map((movie, index) => (
           <Col key={index} className="card-list">
             <MovieCard movie={movie} />
           </Col>
