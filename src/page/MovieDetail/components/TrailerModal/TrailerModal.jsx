@@ -6,14 +6,10 @@ import { useTrailerId } from "../../../../hooks/useTrailerId";
 import { Col, Container, Row } from "react-bootstrap";
 import "./TrailerModal.style.css";
 const TrailerModal = ({ movieId, ...rest }) => {
-  //   const opts = {
-  //     playerVars: {
-  //       // https://developers.google.com/youtube/player_parameters
-  //       width: "100%",
-  //       height: "100%",
-  //       autoplay: 1,
-  //     },
-  //   };
+  const opts = {
+    width: "100%",
+    height: "500px",
+  };
   function onReady(event) {
     // access to player in all event handlers via event.target
     event.target.pauseVideo();
@@ -29,14 +25,13 @@ const TrailerModal = ({ movieId, ...rest }) => {
       data-bs-theme="dark"
     >
       <Modal.Header closeButton></Modal.Header>
-      <Modal.Body className="bg-dark d-flex justify-content-center">
-        <div className="player-wrapper">
-          <YouTube
-            videoId={data?.results[0]?.key}
-            onReady={onReady}
-            className="player" 
-          />
-        </div>
+      <Modal.Body className="bg-dark d-flex justify-content-center player-wrapper">
+        <YouTube
+          videoId={data?.results[0]?.key}
+          onReady={onReady}
+          opts={opts}
+          className="yt-container"
+        />
       </Modal.Body>
     </Modal>
   );
