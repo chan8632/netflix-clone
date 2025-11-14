@@ -5,10 +5,8 @@ import TrailerModal from "../TrailerModal/TrailerModal";
 import { Button } from "react-bootstrap";
 const Banner = () => {
   const [modalShow, setModalShow] = useState(false);
-  const { isLoading, data, isError, error } = usePopularMoviesQuery();
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  const { data, isError, error } = usePopularMoviesQuery();
+ 
 
   if (isError) {
     return <div>{error.message}</div>;

@@ -4,8 +4,7 @@ import MovieSlider from "../../../../common/MovieSlider/MovieSlider";
 import { responsives } from "../../../../constants/responsive";
 import { useTopRatedMovie } from "../../../../hooks/useTopRatedMovie";
 const TopRatedMovieSlide = () => {
-  const { isLoading, data, isError, error } = useTopRatedMovie();
-  if (isLoading) return <div>isLoading</div>;
+  const {  data, isError, error } = useTopRatedMovie();
   if (isError) return <Alert variant={"danger"}>{error.message}</Alert>;
 
   return (

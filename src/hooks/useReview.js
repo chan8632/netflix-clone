@@ -10,4 +10,5 @@ export const useReview = ({ movieId }) =>
     queryKey: ["reviews", { movieId }],
     queryFn: () => fetchUseReview({ movieId }),
     select: (result) => result.data,
+    suspense: true,
   });
