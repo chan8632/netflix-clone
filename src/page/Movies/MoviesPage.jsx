@@ -19,7 +19,7 @@ const MoviesPage = () => {
   const { page, setPageByParams } = usePageStore();
   const keyword = searchParams.get("q");
   // 정렬 state
-  const [sortRule, setSortRule] = useState("");
+  const [sortRule, setSortRule] = useState(null);
   // 분류 state
   const [category, setCategory] = useState(null);
   // 영화 정보
@@ -40,7 +40,7 @@ const MoviesPage = () => {
   };
 
   console.log("mm", data?.results);
-  const [displayData, setDisplayData] = useState(data);
+  const [displayData, setDisplayData] = useState([]);
   // 화면에 보일 데이터
   console.log("1234", displayData);
 
@@ -65,18 +65,29 @@ const MoviesPage = () => {
 
   //영화 필터링 로직
   useEffect(() => {
-    let curData;
-    if (sortRule === "리뷰 많은 순") {
-      curData = reviewsCountSort(displayData);
-    } else if (sortRule === "최신순") {
-      curData = upComingSort(displayData);
+    if (!data || !data.results) {
+      setDisplayData([]);
+      return;
     }
+    let curData = [...data.results];
+    if (matchGenreAndCategory) {
+      curData = filterMovie(curData, matchGenreAndCategory.id);
+    }
+
+    if (sortRule === "리뷰 많은 순") {
+      curData = reviewsCountSort(curData);
+    } else if (sortRule === "최신순") {
+      curData = upComingSort(curData);
+    }
+
     setDisplayData(curData);
-  }, [sortRule]);
+  }, [data, sortRule, category, matchGenreAndCategory]);
 
   // 페이지네이션 숫자 버튼 클릭 시
   const handlePageClick = ({ selected }) => {
     setPageByParams(selected + 1);
+    setCategory(null);
+    setSortRule(null);
   };
 
   if (isLoading) return <div>search data loading</div>;
@@ -103,11 +114,17 @@ const MoviesPage = () => {
         </Col>
       </Row>
       <Row>
-        {displayData?.results.map((movie, index) => (
-          <Col key={index} className="card-list">
-            <MovieCard movie={movie} />
+        {displayData.length > 0 ? (
+          displayData.map((movie, index) => (
+            <Col key={index} className="card-list">
+              <MovieCard movie={movie} />
+            </Col>
+          ))
+        ) : (
+          <Col>
+            <Alert variant="warning">필터 결과에 맞는 영화가 없습니다.</Alert>
           </Col>
-        ))}
+        )}
       </Row>
       <ReactPaginate
         nextLabel=">"
