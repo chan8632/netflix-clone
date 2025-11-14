@@ -9,4 +9,5 @@ export const useTrailerId = ({ movieId }) =>
     queryKey: ["trailer", { movieId }],
     queryFn: () => fetchTrailer({ movieId }),
     select: (result) => result.data,
+    suspense: true,
   });

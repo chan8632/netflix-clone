@@ -32,7 +32,7 @@ const TrailerModal = ({ movieId, ...rest }) => {
       <Modal.Body className="bg-dark d-flex justify-content-center">
         <div className="player-wrapper">
           <YouTube
-            videoId={data?.results[0].key}
+            videoId={data?.results[0]?.key}
             onReady={onReady}
             className="player" 
           />

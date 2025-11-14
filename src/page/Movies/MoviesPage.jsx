@@ -23,7 +23,7 @@ const MoviesPage = () => {
   // 분류 state
   const [category, setCategory] = useState(null);
   // 영화 정보
-  const { isLoading, data, isError, error } = useSearchMovie({ keyword, page });
+  const { data, isError, error } = useSearchMovie({ keyword, page });
 
   // 정렬 함수
   const reviewsCountSort = (data) => {
@@ -90,7 +90,6 @@ const MoviesPage = () => {
     setSortRule(null);
   };
 
-  if (isLoading) return <div>search data loading</div>;
   if (isError) return <div>에러메세지 : {error.message}</div>;
   if (data.results.length === 0)
     return <Alert variant="danger">{keyword}와 관련된 영화는 없습니다!</Alert>;

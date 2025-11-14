@@ -10,4 +10,5 @@ export const useUpComingMoviesQuery = () =>
     queryKey: ["upcoming"],
     queryFn: fetchUpComingMovie,
     select: (result) => result.data,
+    suspense: true,
   });

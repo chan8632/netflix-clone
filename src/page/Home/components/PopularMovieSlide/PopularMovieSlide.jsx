@@ -6,8 +6,7 @@ import MovieSlider from "../../../../common/MovieSlider/MovieSlider";
 import { responsives } from "../../../../constants/responsive";
 
 const PopularMovieSlide = () => {
-  const { isLoading, data, isError, error } = usePopularMoviesQuery();
-  if (isLoading) return <div>isLoading</div>;
+  const { data, isError, error } = usePopularMoviesQuery();
   if (isError) return <Alert variant={"danger"}>{error.message}</Alert>;
   return (
     <MovieSlider

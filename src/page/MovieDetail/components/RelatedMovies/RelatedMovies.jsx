@@ -4,8 +4,7 @@ import MovieSlider from "../../../../common/MovieSlider/MovieSlider";
 import { responsives } from "../../../../constants/responsive";
 
 const RelatedMovies = ({ movieId }) => {
-  const { isLoading, data, isError, error } = useRelatedMovie({ movieId });
-  if (isLoading) return <div>isLoading</div>;
+  const {  data, isError, error } = useRelatedMovie({ movieId });
   if (isError) return <Alert variant={"danger"}>{error.message}</Alert>;
   return (
     <MovieSlider

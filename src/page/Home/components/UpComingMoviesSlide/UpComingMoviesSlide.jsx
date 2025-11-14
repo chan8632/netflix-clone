@@ -3,8 +3,7 @@ import MovieSlider from "../../../../common/MovieSlider/MovieSlider";
 import { responsives } from "../../../../constants/responsive";
 import { useUpComingMoviesQuery } from "../../../../hooks/useUpComingMovies";
 const UpComingMoviesSlide = () => {
-  const { isLoading, data, isError, error } = useUpComingMoviesQuery();
-  if (isLoading) return <div>...loading</div>;
+  const {  data, isError, error } = useUpComingMoviesQuery();
   if (isError) return <div>{error.message}</div>;
 
   return (
