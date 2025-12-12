@@ -28,12 +28,12 @@ const ReviewItem = ({ review }) => {
           ref={textRef}
         >
           {review.content}
-          {showAddButton ? (
-            <button className="add-button" onClick={handleHeight}>
-              {fold ? "더보기" : "접기"}
-            </button>
-          ) : null}
         </Card.Text>
+        {showAddButton ? (
+          <button className="add-button" onClick={handleHeight}>
+            {fold ? "더보기" : "접기"}
+          </button>
+        ) : null}
       </Card.Body>
     </Card>
   );

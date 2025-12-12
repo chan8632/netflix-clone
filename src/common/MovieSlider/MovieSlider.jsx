@@ -10,7 +10,7 @@ const MovieSlider = ({ title, responsive, movies }) => {
       <Container>
         <Row>
           <Col>
-            <h3>{title}</h3>
+            <h3 className="m-0">{title}</h3>
           </Col>
         </Row>
       </Container>

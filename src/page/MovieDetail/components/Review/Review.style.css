@@ -6,10 +6,7 @@
   max-height: none;
 }
 .add-button {
-  position: absolute;
   background: none;
-  border:none;
-  color:white;
-  bottom: 2px;
-  left:9px;
+  border: none;
+  color: white;
 }

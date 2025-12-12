@@ -12,7 +12,7 @@ const RelatedMovies = ({ movieId }) => {
     <MovieSlider
       title={"Related Movies"}
       responsive={responsives}
-      movies={data?.results}
+      movies={data.results}
     />
   );
 };
